@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function setCookie(cname,cvalue,exdays) {
+          const d = new Date();
+          d.setTime(d.getTime() + (exdays*24*60*60*1000));
+          let expires = "expires=" + d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        
+        function getCookie(cname) {
+          let name = cname + "=";
+          let decodedCookie = decodeURIComponent(document.cookie);
+          let ca = decodedCookie.split(';');
+          for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+        
+        function checkCookie() {
+          let user = getCookie("username");
+          if (user != "") {
+            alert("Welcome again " + user);
+          } else {
+             user = prompt("Please enter your name:","");
+             if (user != "" && user != null) {
+               setCookie("username", user, 30);
+             }
+          }
+        }
+        </script>
+</head>
+
+<body onload="checkCookie()">
+
+    
+
+    <div id="productcontainer"  class="grid grid-cols-4 gap-4 mx-auto container mt-5">
+        
+        
+        
+
+
+
+    </div>
+    
+   
+
+    <script>
+
+        // let product = {
+        //     title: 'Shoe',
+        //     price: '$250',
+        //     category: 'Sport',
+            
+
+        // }
+
+        // function cat() {
+        //     let cart = document.querySelector('.cart');
+        //     let cartItem = document.createElement('div');
+        //     cartItem.innerHTML = '<h2>${product.title}</h2>'
+        //     '<h2>${product.price}</h2>'
+        //     '<h2>${product.category}</h2>'
+        //     cart.appendChild(cartItem);
+            
+
+        // }
+
+        // document.write(`{product.title}`);
+
+        const product = [{
+            name: "product tittle 1",
+            image: "220px-Qr-1.PNG",
+            price: "$100",
+            decription: "This is great Product This is demo data Product This is great Product This is demo data Product"
+        },
+        {
+            name: "product 2",
+            image: "220px-Qr-1.PNG",
+            price: "$200",
+            decription: "This is great Product This is demo data Product This is great Product This is demo data Product"
+        },
+        {
+            name: "product 3",
+            image: "220px-Qr-1.PNG",
+            price: "$300",
+            decription: "This is great Product This is demo data Product This is great Product This is demo data Product"
+        },
+        {
+            name: "product 4",
+            image: "220px-Qr-1.PNG",
+            price: "$400",
+            decription: "This is great Product This is demo data Product This is great Product This is demo data Product"
+        }
+    ]
+
+        let data=''
+        for (let pro in product){
+            const sinpro = product[pro]
+            data+=`<div class="grid gap-2 place-items-start">
+                
+            <div class="grid gap-2 place-items-start">
+                <img src="${sinpro.image}" alt="">
+                <div>
+         <button class="p-2 bg-blue-500 rounded">Ad to cart</button>
+          </div>
+                <div>${sinpro.name}</div>
+                <div>$${sinpro.price}</div>
+                <div>${sinpro.decription}</div>
+            </div>
+        </div>`
+            console.log(data)
+        }
+
+        document.getElementById("productcontainer").innerHTML= data;
+
+
+        document.cookie
+    </script>
+</body>
+
+</html>
